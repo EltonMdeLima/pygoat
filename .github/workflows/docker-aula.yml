@@ -16,11 +16,14 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
     - name: Docker Scout
-      uses: docker;scout-action@v1.10.0
+      uses: docker/scout-action@v1.10.0
       with:
         # Docker Hub User
         dockerhub-user: ${{ screts.DOCKER_HUB_USER }}
         # Docker Hub PAT
         dockerhub-password: ${{ screts.DOCKER_HUB_PASSWORD }}
-        command: quickview,cves
+        command:
+          quickview,cves
         sarif-file: docker_vuls.json
+
+
